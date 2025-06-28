@@ -1,7 +1,6 @@
 __pycache__/
 *.h5
 *.ipynb
-*.pkl
 *.zip
 *.csv
 *.log
