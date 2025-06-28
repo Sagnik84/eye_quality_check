@@ -1,7 +1,7 @@
 streamlit
 numpy
-pillow
 opencv-python
+pillow
 scikit-learn
 joblib
-opencv-python
+tensorflow==2.13.0
