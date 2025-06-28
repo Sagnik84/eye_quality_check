@@ -14,9 +14,13 @@ THRESHOLD = 0.65  # Confidence threshold (only used for good_eye)
 # === Load RandomForest model ===
 clf = joblib.load("random_forest_eye_model.pkl")  # Ensure this file exists
 
-# === Load MobileNetV3Small (576-dim output) ===
-base_model = MobileNetV3Small(weights='imagenet', include_top=False, pooling='avg', input_shape=(224, 224, 3))
-feature_extractor = Model(inputs=base_model.input, outputs=base_model.output)
+@st.cache_resource
+def load_feature_extractor():
+    base_model = MobileNetV3Small(weights='imagenet', include_top=False, pooling='avg', input_shape=(224, 224, 3))
+    return Model(inputs=base_model.input, outputs=base_model.output)
+
+# Call it once; result is cached
+feature_extractor = load_feature_extractor()
 
 # === Streamlit App UI ===
 st.set_page_config(page_title="Eye Quality Checker", layout="centered")
