@@ -4,3 +4,4 @@ pillow
 opencv-python
 scikit-learn
 joblib
+opencv-python
