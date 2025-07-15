@@ -1,8 +1,9 @@
-streamlit
-streamlit-webrtc
+streamlit>=1.25.0
 opencv-python
 mediapipe
-tensorflow
+tensorflow>=2.9.0
 scikit-learn
 joblib
 numpy
+av
+streamlit-webrtc
