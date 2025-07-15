@@ -1,8 +1,8 @@
 streamlit
-mediapipe
-numpy
+streamlit-webrtc
 opencv-python
-pillow
+mediapipe
+tensorflow
 scikit-learn
 joblib
-tensorflow==2.13.0
+numpy
