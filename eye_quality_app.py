@@ -58,7 +58,7 @@ frame_placeholder = st.empty()
 status_text = st.empty()
 
 capture_saved = False
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture("http://192.168.71.13:8080/video")
 
 while cap.isOpened():
     ret, frame = cap.read()
