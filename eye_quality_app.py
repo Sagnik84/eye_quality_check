@@ -56,7 +56,7 @@ class VideoProcessor(VideoTransformerBase):
             min_tracking_confidence=0.5
         )
 
-    def recv(self, frame: av.VideoFrame) -> np.ndarray:
+    def transform(self, frame: av.VideoFrame) -> np.ndarray:
         image = frame.to_ndarray(format="bgr24")
         h, w = image.shape[:2]
         clean_frame = image.copy()
