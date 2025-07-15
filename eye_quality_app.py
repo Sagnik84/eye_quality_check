@@ -8,7 +8,12 @@ from tensorflow.keras.applications.mobilenet_v3 import preprocess_input
 import joblib
 
 # === Load Models ===
-mobilenet = MobileNetV3Small(include_top=False, input_shape=(224, 224, 3), pooling='avg')
+@st.cache_resource
+def load_model():
+    from tensorflow.keras import backend as K
+    K.clear_session()
+    mobilenet = MobileNetV3Small(include_top=False, input_shape=(224, 224, 3), pooling='avg')
+    return mobilenet
 rf_model = joblib.load("random_forest_eye_model_aug.pkl")  # ✅ replace with correct path
 
 # === Helper functions ===
@@ -51,7 +56,7 @@ class VideoProcessor(VideoTransformerBase):
             min_tracking_confidence=0.5
         )
 
-    def transform(self, frame: av.VideoFrame) -> np.ndarray:
+    def recv(self, frame: av.VideoFrame) -> np.ndarray:
         image = frame.to_ndarray(format="bgr24")
         h, w = image.shape[:2]
         clean_frame = image.copy()
