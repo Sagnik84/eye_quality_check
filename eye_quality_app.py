@@ -9,11 +9,14 @@ import joblib
 
 # === Load Models ===
 @st.cache_resource
+
 def load_model():
     from tensorflow.keras import backend as K
     K.clear_session()
     mobilenet = MobileNetV3Small(include_top=False, input_shape=(224, 224, 3), pooling='avg')
     return mobilenet
+
+mobilenet = load_model()
 rf_model = joblib.load("random_forest_eye_model_aug.pkl")  # ✅ replace with correct path
 
 # === Helper functions ===
@@ -44,7 +47,6 @@ class VideoProcessor(VideoTransformerBase):
     def __init__(self):
         self.capture_saved = False
         self.tick_shown = False
-        self.counter = 0
         global mp_face_mesh
         import mediapipe as mp
         mp_face_mesh = mp.solutions.face_mesh
